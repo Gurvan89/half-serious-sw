@@ -1,0 +1,51 @@
+@import 'globals/typography';
+@import 'globals/mixins';
+
+.text {
+  padding-top: 30rem;
+  display: flex;
+  justify-content: center;
+  height: 50rem;
+  color: $textColor;
+  font-size: 70px;
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: justify;
+}
+
+.crawl {
+  position: relative;
+  top: 99999px;
+  transform-origin: 50% 100%;
+  animation: crawl 60s linear;
+}
+
+.crawl>.title {
+  font-size: 90%;
+  text-align: center;
+}
+
+.crawl>.title h1 {
+  margin: 0 0 100px;
+  text-transform: uppercase;
+}
+
+@keyframes crawl {
+  0% {
+    top: -0px;
+    transform: rotateX(20deg) translateZ(0);
+  }
+
+  100% {
+    top: -6500px;
+    transform: rotateX(25deg) translateZ(-2500px);
+  }
+}
+
+
+@import 'components/galaxy.scss';
+@import 'components/space-ship-detail.scss';
+@import 'components/space-ship-star.scss';
+@import 'components/spinner.scss';

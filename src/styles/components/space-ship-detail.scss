@@ -1,0 +1,77 @@
+$textColor: #feda4a;
+
+.space-ship-detail {
+    position: fixed;
+    z-index: 11;
+    padding-top: 10rem;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba($color: #000000, $alpha: 0.5);
+    display: none;
+    align-items: baseline;
+    justify-content: center;
+
+    &--open {
+        display: flex;
+    }
+
+    &__content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        color: $textColor;
+        border: 1px solid $textColor;
+        background-color: black;
+        width: 50%;
+        min-height: 20rem;
+        border-radius: 3px;
+        padding: 1rem;
+
+        >span:first-child {
+            position: absolute;
+            right: 2rem;
+            cursor: pointer;
+        }
+
+        >div {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+    }
+
+    .pilots {
+        margin-top: 2rem;
+
+        >div {
+            display: flex;
+        }
+
+        &__pilot {
+            cursor: pointer;
+
+            &:hover,
+            &--selected {
+                svg {
+                    fill: $textColor;
+                    stroke: $textColor;
+                }
+            }
+        }
+
+        strong {
+            margin-top: 1rem;
+        }
+    }
+
+    @media only screen and (max-width: 1000px) {
+        padding-top: 2rem;
+        &__content {
+            width: 80%;
+        }
+    }
+
+}

@@ -1,0 +1,93 @@
+$starFieldWidth: 600;
+$starFieldHeight: 600;
+
+$starOneScrollDuration: 2s;
+$starTwoScrollDuration: 3s;
+$starThreeScrollDuration: 3s;
+
+$numStarOneStars: 500;
+$numStarTwoStars: 700;
+$numStarThreeStars: 500;
+
+$size: 40;
+
+@function create-stars($n) {
+  $stars: '#{random($starFieldWidth)}px #{$starFieldWidth}px #FFF';
+
+  @for $i from 2 through $n {
+    $stars: '#{$stars} , #{random($starFieldWidth)}px #{random($starFieldHeight)}px #FFF';
+  }
+
+  @return unquote($stars);
+}
+
+@keyframes rotateStars {
+
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(359deg);
+  }
+}
+
+@mixin star-spinner($numStars, $starSize, $rotateSpeed) {
+  z-index: 10;
+  width: $starSize;
+  height: $starSize;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: create-stars($numStars);
+  animation: rotateStars $rotateSpeed linear infinite;
+}
+
+.spinner {
+  position: fixed;
+  width: #{$size}rem;
+  height: #{$size}rem;
+  background: transparent;
+  top: 35rem;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+
+  &--show{
+    animation: fade-in 500ms;
+  }
+  &--hide{
+    animation: fade-out 500ms;
+  }
+  &--none{
+    display: none;
+  }
+
+  &__stars {
+    transform-origin: #{calc($size/2)}rem #{calc($size/2)}rem;
+    @include star-spinner($numStarOneStars, 1px, $starOneScrollDuration);
+  }
+
+  &__stars-2 {
+    transform-origin: #{calc($size/2)}rem #{calc($size/2)}rem;
+    @include star-spinner($numStarTwoStars, 2px, $starTwoScrollDuration);
+  }
+
+  &__stars-3 {
+    transform-origin: #{calc($size/2)}rem #{calc($size/2)}rem;
+    @include star-spinner($numStarThreeStars, 3px, $starThreeScrollDuration);
+  }
+
+  &__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -webkit-text-stroke: 0.5px $textColor;
+    /* width and color */
+    color: transparent;
+    line-height: 4rem;
+    font-size: 40px;
+    text-align: center;
+  }
+}

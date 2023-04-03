@@ -1,0 +1,35 @@
+.space-ship-star {
+    position: absolute;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+    z-index: 10;
+
+    $size: 3px;
+    &__dot {
+        height: $size;
+        width: $size;
+        background-color: #fff;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    &__tooltip {
+        background-color: #feda4a;
+        border-radius: 3px;
+        padding: 0.5rem;
+        position: fixed;
+        display: none;
+        color: black;
+        h3{
+            line-height: 0px;
+        }
+        z-index: 11;
+
+    }
+
+    &:hover &__tooltip {
+        display: block;
+    }
+
+}
